@@ -1,0 +1,282 @@
+<div class="header color-change-5x pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-6 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Account Balance</h5>
+                  <span class="h1 font-weight-bold mb-0">Total: {{totalAccount | currency: 'USD'}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-success text-white rounded-circle shadow">
+                    <i class="fas fa-coins"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class=" mr-2 font-weight-bold ">Saving: $ 100,000.00 </span>
+                <span class="text-nowrap"><i class="fa fa-arrow-down text-danger"></i> -3.48% Since last month</span>
+              </p>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class=" mr-2 font-weight-bold">Cheking:  $ 300,000.00 </span>
+                <span class="text-nowrap"><i class="fa fa-arrow-up text-success"></i> +5,04% Since last month</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Credits</h5>
+                  <span class="h1 font-weight-bold mb-0">Total:  {{totalCredits | currency: 'USD'}}</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                    <i class="fas fa-dollar-sign"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class=" mr-2 font-weight-bold">Credit Line:  $ 23,564.00</span>
+                <span class="text-nowrap"><i class="fa fa-arrow-down text-danger"></i> -15% Since last month</span>
+              </p>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class=" mr-2 font-weight-bold">Mortgage: $ 3,421.00</span>
+                <span class="text-nowrap"><i class="fa fa-arrow-down text-danger"></i> -7% Since last month</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                  <span class="h2 font-weight-bold mb-0">924</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="fas fa-users"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                <span class="text-nowrap">Since yesterday</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
+                  <span class="h2 font-weight-bold mb-0">49,65%</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                    <i class="fas fa-percent"></i>
+                  </div>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+            </div>
+          </div>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row mt-5">
+    <div class="col-xl-8 mb-5 mb-xl-0">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Last Movements</h3>
+            </div>
+            <div class="col text-right padding10">
+              <a (click)="checkIncome('all')"  class="btn btn-sm btn-default margin10">See all</a>
+              <a  (click)="checkIncome('income')" class="btn btn-sm btn-default margin10"><i class="fa fa-arrow-up text-success"></i> Income</a>
+              <a (click)="checkIncome('outcome')" class="btn btn-sm btn-default  margin10"><i class="fa fa-arrow-down text-danger"></i> Outcome</a>
+
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive table-hover">
+          <!-- Projects table -->
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">Description</th>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of lastMovements" >
+              <th scope="row" *ngIf="showItem === item.type || showItem === 'all'">
+                {{item.description}}
+              </th>
+              <td *ngIf="showItem === item.type || showItem === 'all'">
+                {{item.date | date}}
+              </td>
+              <td *ngIf="showItem === item.type || showItem === 'all'">
+                {{item.amount | currency: 'USD'}}
+              </td>
+              <td *ngIf="showItem === item.type || showItem === 'all'">
+                {{checkTotal(item.amount)  | currency: 'USD'}} <i class="fas {{item.class}}"></i>
+              </td>
+
+            </tr>
+
+            </tbody>
+          </table>
+          <div class="card-footer py-4">
+            <nav aria-label="...">
+              <ul class="pagination justify-content-end mb-0">
+                <li class="page-item disabled">
+                  <a class="page-link">
+                    <i class="fas fa-angle-left"></i>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" >1</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" >
+                    <i class="fas fa-angle-right"></i>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Credit Cards</h3>
+            </div>
+            <div class="col text-right">
+              <a (click)="changeCard('visa')" class="btn btn-sm btn-default"> <i class="fa-brands fa-cc-visa fa-2x"></i></a>
+              <a (click)="changeCard('master')" class="btn btn-sm btn-default"> <i class="fa-brands fa-cc-mastercard fa-2x"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="row " *ngIf="creditType=== 'visa'">
+          <div class="col-md-7 centrado">
+            <div class='creditcard'>
+              <div class='top-block'>
+                <div class='card-chip'>
+                  PAOLA GODOY
+                </div>
+                <span class='card-name '>
+                 <i class="fa-brands fa-cc-visa centrado"></i>
+              </span>
+              </div>
+              <div class='card-number'>
+                <p>Limit: $ 18.000,00 </p>
+                <p>xxxx xxxx xxxx 7203</p>
+                <h5 class="colorBlanco">CCV: XX2</h5>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-5 col-xs-12 padding10">
+            <div class="col-md-12">
+              <p><strong>Credit information: </strong></p>
+              <p>Total Debts: $ 12,000.00 </p>
+              <p>This Month: $ 3,456.00 </p>
+              <div class="padding10">
+                <span class="mr-2">Used: 60%</span>
+                <div>
+                  <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <div class="col-md-12  paddingTop30">
+            <a class="btn btn-success centrado padding10">Pay Now: $ 3,456.00</a>
+          </div>
+          <div class="col-md-12  paddingTop15"></div>
+        </div>
+        <div class="row " *ngIf="creditType=== 'master'">
+          <div class="col-md-7 centrado">
+            <div class='creditcard-master'>
+              <div class='top-block'>
+                <div class='card-chip'>
+                  MARIA GODOY
+                </div>
+                <span class='card-name '>
+                 <i class="fa-brands fa-cc-mastercard centrado"></i>
+              </span>
+              </div>
+              <div class='card-number'>
+                <p>Limit: $ 3.000,00 </p>
+                <p>xxxx xxxx xxxx 1243</p>
+                <h5 class="colorBlanco">CCV: XX5</h5>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-5 col-xs-12 padding10">
+            <div class="col-md-12">
+              <p><strong>Credit information: </strong></p>
+              <p>Total Debts: $ 300.00 </p>
+              <p>This Month: $ 156.00 </p>
+              <div class="padding10">
+                <span class="mr-2">Used: 10%</span>
+                <div>
+                  <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+          <div class="col-md-12  paddingTop30">
+            <a class="btn btn-success centrado padding10">Pay Now: $ 156.00</a>
+          </div>
+          <div class="col-md-12  paddingTop15"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

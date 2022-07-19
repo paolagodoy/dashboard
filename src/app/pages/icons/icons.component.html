@@ -1,0 +1,58 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header bg-transparent">
+          <h3 class="mb-0">Projections of Expenses and Income</h3>
+        </div>
+        <div class="card-body">
+          <div class="row icon-examples">
+            <div class="col-lg-5 col-md-6">
+              <div class="col-md-12">
+                <h4 >  Expense distribution</h4>
+                <p class="paddingTop15x">This is how your expenses are divided this month.</p>
+                <ngx-charts-advanced-pie-chart
+
+                  [scheme]="colorScheme"
+                  [results]="single"
+                  [gradient]="gradient"
+                >
+                </ngx-charts-advanced-pie-chart>
+              </div>
+            </div>
+            <div class="col-lg-7 col-md-6">
+              <h4 >Expenditure projection</h4>
+              <p class="paddingTop15x">Projection of expenses for the coming  3 months</p>
+              <ngx-charts-line-chart
+
+                [scheme]="colorSchemeLine"
+                [legend]="legend"
+                [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel"
+                [xAxis]="xAxis"
+                [yAxis]="yAxis"
+                [xAxisLabel]="xAxisLabel"
+                [yAxisLabel]="yAxisLabel"
+                [timeline]="timeline"
+                [results]="multi"
+              >
+              </ngx-charts-line-chart>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
